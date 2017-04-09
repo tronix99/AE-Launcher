@@ -1,26 +1,22 @@
 package com.arx_era.launcher;
 
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends FragmentActivity {
+    private ViewPager viewPager;
+    private Screenadapters mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
 
-        LinearLayout touch = (LinearLayout) findViewById(R.id.touch_area);
-        touch.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Toast.makeText(getApplicationContext(),"Hello", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
+        // Initilization
+        viewPager = (ViewPager) findViewById(R.id.screens);
+        mAdapter = new Screenadapters(getSupportFragmentManager());
+
+        viewPager.setAdapter(mAdapter);
     }
 }
