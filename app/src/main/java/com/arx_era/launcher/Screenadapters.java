@@ -23,7 +23,7 @@ public class Screenadapters extends FragmentPagerAdapter {
             case 1:
                 return new Home();
             case 2:
-                return new Home();
+                return new AppDrawer();
         }
 
         return null;
