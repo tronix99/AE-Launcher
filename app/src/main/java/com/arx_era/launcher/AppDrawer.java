@@ -19,6 +19,8 @@ import java.util.List;
 
 public class AppDrawer extends Fragment {
 
+    DrawerAdapter drawerAdapterObject;
+
     //class to store apps info and label
     class Pac {
         Drawable icon;
@@ -36,8 +38,11 @@ public class AppDrawer extends Fragment {
 
         View rootView = inflater.inflate(R.layout.appdrawer, container, false);
 
-        packagemanager = getActivity().getPackageManager();
         appdrawergrid = (GridView) rootView.findViewById(R.id.appdrawer);
+        packagemanager = getActivity().getPackageManager();
+        set_pacs();
+        drawerAdapterObject = new DrawerAdapter(getActivity(), pacs);
+        appdrawergrid.setAdapter(drawerAdapterObject);
 
         return rootView;
     }

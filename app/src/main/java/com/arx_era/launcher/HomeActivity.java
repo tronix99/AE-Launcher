@@ -18,5 +18,6 @@ public class HomeActivity extends FragmentActivity {
         mAdapter = new Screenadapters(getSupportFragmentManager());
 
         viewPager.setAdapter(mAdapter);
+        viewPager.setCurrentItem(1);
     }
 }
