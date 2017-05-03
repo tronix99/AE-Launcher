@@ -11,7 +11,7 @@ public class HomeActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_screen);
+        setContentView(R.layout.main_screen);
 
         // Initilization
         viewPager = (ViewPager) findViewById(R.id.screens);

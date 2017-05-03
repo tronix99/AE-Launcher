@@ -1,6 +1,9 @@
 package com.arx_era.launcher;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
@@ -19,7 +22,7 @@ import java.util.List;
 
 public class AppDrawer extends Fragment {
 
-    DrawerAdapter drawerAdapterObject;
+    AppDrawerAdapter drawerAdapterObject;
 
     //class to store apps info and label
     class Pac {
@@ -41,8 +44,13 @@ public class AppDrawer extends Fragment {
         appdrawergrid = (GridView) rootView.findViewById(R.id.appdrawer);
         packagemanager = getActivity().getPackageManager();
         set_pacs();
-        drawerAdapterObject = new DrawerAdapter(getActivity(), pacs);
-        appdrawergrid.setAdapter(drawerAdapterObject);
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_PACKAGE_ADDED);
+        filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+        filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
+        filter.addDataScheme("package");
+        getActivity().registerReceiver(new pacsReceiver(), filter);
 
         return rootView;
     }
@@ -57,6 +65,17 @@ public class AppDrawer extends Fragment {
             pacs[i].icon=pacsList.get(i).loadIcon(packagemanager);
             pacs[i].name =  pacsList.get(i).activityInfo.packageName;
             pacs[i].label = pacsList.get(i).loadLabel(packagemanager).toString();
+        }
+        new SortApps().exchange_sort(pacs);
+        drawerAdapterObject = new AppDrawerAdapter(getActivity(), pacs);
+        appdrawergrid.setAdapter(drawerAdapterObject);
+        appdrawergrid.setOnItemClickListener(new AppDrawerClickListener(getActivity(), pacs, packagemanager));
+    }
+
+    public class pacsReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            set_pacs();
         }
     }
 }
