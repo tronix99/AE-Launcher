@@ -4,7 +4,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 
-public class HomeActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity {
     private ViewPager viewPager;
     private Screenadapters mAdapter;
 
@@ -19,5 +19,10 @@ public class HomeActivity extends FragmentActivity {
 
         viewPager.setAdapter(mAdapter);
         viewPager.setCurrentItem(1);
+    }
+
+    @Override
+    public void onBackPressed() {
+        
     }
 }
