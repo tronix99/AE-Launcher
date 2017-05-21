@@ -26,54 +26,10 @@ public class MainActivity extends FragmentActivity {
         viewPager.setAdapter(mAdapter);
         viewPager.setCurrentItem(1);
 
-        init();
-        panelListener();
-    }
-
-    public  void init(){
-        slayout = (SlidingUpPanelLayout) findViewById(R.id.slideuppanel);
-    }
-
-    public void panelListener() {
-        slayout.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
-
-            // During the transition of expand and collapse onPanelSlide function will be called.
-            @Override
-            public void onPanelSlide(View panel, float slideOffset) {
-                Log.e(TAG, "onPanelSlide, offset " + slideOffset);
-            }
-
-            // This method will be call after slide up layout
-            @Override
-            public void onPanelExpanded(View panel) {
-                Log.e(TAG, "onPanelExpanded");
-
-            }
-
-            // This method will be call after slide down layout.
-            @Override
-            public void onPanelCollapsed(View panel) {
-                Log.e(TAG, "onPanelCollapsed");
-
-            }
-
-            @Override
-            public void onPanelAnchored(View panel) {
-                Log.e(TAG, "onPanelAnchored");
-            }
-
-            @Override
-            public void onPanelHidden(View panel) {
-                Log.e(TAG, "onPanelHidden");
-            }
-        });
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
     @Override
     public void onBackPressed() {
-        if (slayout != null &&
-                (slayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED || slayout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED)) {
-            slayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-        } else {}
     }
 }
