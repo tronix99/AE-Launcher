@@ -20,11 +20,11 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.main_screen);
 
         // Initilization
-        viewPager = (ViewPager) findViewById(R.id.screens);
-        mAdapter = new Screenadapters(getSupportFragmentManager());
+        //viewPager = (ViewPager) findViewById(R.id.screens);
+        //mAdapter = new Screenadapters(getSupportFragmentManager());
 
-        viewPager.setAdapter(mAdapter);
-        viewPager.setCurrentItem(1);
+        //viewPager.setAdapter(mAdapter);
+        //viewPager.setCurrentItem(1);
     }
 
     @Override
