@@ -16,9 +16,9 @@ import android.widget.TextView;
 
 public class AppDrawerAdapter extends BaseAdapter {
     Context mContext;
-    AppDrawer.Pac[] pacsForAdapter;
+    MainActivity.Pac[] pacsForAdapter;
 
-    public AppDrawerAdapter(Context c, AppDrawer.Pac pacs[]){
+    public AppDrawerAdapter(Context c, MainActivity.Pac pacs[]){
         mContext = c;
         pacsForAdapter = pacs;
     }

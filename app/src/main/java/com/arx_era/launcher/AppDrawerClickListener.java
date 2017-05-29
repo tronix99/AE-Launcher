@@ -14,10 +14,10 @@ import android.widget.AdapterView.OnItemClickListener;
 public class AppDrawerClickListener implements OnItemClickListener{
 
     Context mContext;
-    AppDrawer.Pac[] pacsForAdapter;
+    MainActivity.Pac[] pacsForAdapter;
     PackageManager packageManagerForListener;
 
-    public AppDrawerClickListener(Context c, AppDrawer.Pac[] pacs, PackageManager packageManager){
+    public AppDrawerClickListener(Context c, MainActivity.Pac[] pacs, PackageManager packageManager){
         mContext = c;
         pacsForAdapter = pacs;
         packageManagerForListener = packageManager;

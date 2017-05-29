@@ -1,30 +1,71 @@
 package com.arx_era.launcher;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+import android.widget.GridView;
 
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import java.util.List;
 
 public class MainActivity extends FragmentActivity {
-    private ViewPager viewPager;
-    private Screenadapters mAdapter;
-    private SlidingUpPanelLayout slayout;
-    private static final String TAG = "MainAcitvity";
+    AppDrawerAdapter drawerAdapterObject;
+
+    //class to store apps info and label
+    class Pac {
+        Drawable icon;
+        String name;
+        String label;
+    }
+
+    MainActivity.Pac[] pacs;
+    PackageManager packagemanager;
+    GridView appdrawergrid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
 
-        // Initilization
-        //viewPager = (ViewPager) findViewById(R.id.screens);
-        //mAdapter = new Screenadapters(getSupportFragmentManager());
+        appdrawergrid = (GridView) findViewById(R.id.appdrawer);
+        packagemanager = getPackageManager();
+        set_pacs();
 
-        //viewPager.setAdapter(mAdapter);
-        //viewPager.setCurrentItem(1);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_PACKAGE_ADDED);
+        filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+        filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
+        filter.addDataScheme("package");
+        registerReceiver(new pacsReceiver(), filter);
+    }
+
+    public void set_pacs(){
+        final Intent mainIntent = new Intent(Intent.ACTION_MAIN,null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        List<ResolveInfo> pacsList = packagemanager.queryIntentActivities(mainIntent, 0);
+        pacs = new Pac[pacsList.size()];
+        for(int i=0; i<pacsList.size(); i++){
+            pacs[i] = new Pac();
+            pacs[i].icon=pacsList.get(i).loadIcon(packagemanager);
+            pacs[i].name =  pacsList.get(i).activityInfo.packageName;
+            pacs[i].label = pacsList.get(i).loadLabel(packagemanager).toString();
+        }
+        new SortApps().exchange_sort(pacs);
+        drawerAdapterObject = new AppDrawerAdapter(this, pacs);
+        appdrawergrid.setAdapter(drawerAdapterObject);
+        appdrawergrid.setOnItemClickListener(new AppDrawerClickListener(this, pacs, packagemanager));
+    }
+
+    public class pacsReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            set_pacs();
+        }
     }
 
     @Override
