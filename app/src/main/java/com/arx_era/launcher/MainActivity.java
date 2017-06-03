@@ -9,9 +9,19 @@ import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
 import android.widget.GridView;
 
+import com.arx_era.homerecyclerview.Model;
+import com.arx_era.homerecyclerview.MultiViewTypeAdapter;
+
+import java.util.ArrayList;
 import java.util.List;
+
+import static android.R.id.list;
 
 public class MainActivity extends FragmentActivity {
     AppDrawerAdapter drawerAdapterObject;
@@ -42,6 +52,16 @@ public class MainActivity extends FragmentActivity {
         filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
         filter.addDataScheme("package");
         registerReceiver(new pacsReceiver(), filter);
+
+        ArrayList list= new ArrayList();
+        list.add(new Model(Model.dt_card,0));
+        MultiViewTypeAdapter adapter = new MultiViewTypeAdapter(list,this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, OrientationHelper.VERTICAL, false);
+
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.screen);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setAdapter(adapter);
     }
 
     public void set_pacs(){
