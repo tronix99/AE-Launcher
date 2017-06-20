@@ -6,17 +6,15 @@ package com.arx_era.homerecyclerview;
 
 public class Model {
 
-    public static final int dt_card=0;
-    public static final int pro_card=1;
-    public static final int favapp_card=2;
-    public static final int music_card=3;
+    public static final int DT_CARD=0;
+    public static final int PRO_CARD=1;
+    public static final int FAVAPP_CARD=2;
+    public static final int MUSIC_CARD=3;
 
     public int type;
-    public int data;
 
-    public Model(int type, int data)
+    public Model(int type)
     {
         this.type=type;
-        this.data=data;
     }
 }

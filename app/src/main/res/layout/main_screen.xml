@@ -17,7 +17,7 @@
         android:id="@+id/itemLayout"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="left"
+        android:layout_gravity="right"
         android:layout_marginLeft="-64dp"
         android:background="@color/white"
         android:orientation="vertical">

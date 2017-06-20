@@ -7,12 +7,14 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.GridView;
 
 import com.arx_era.homerecyclerview.Model;
@@ -43,6 +45,7 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.main_screen);
 
         appdrawergrid = (GridView) findViewById(R.id.appdrawer);
+        appdrawergrid.setFastScrollEnabled(true);
         packagemanager = getPackageManager();
         set_pacs();
 
@@ -54,7 +57,8 @@ public class MainActivity extends FragmentActivity {
         registerReceiver(new pacsReceiver(), filter);
 
         ArrayList list= new ArrayList();
-        list.add(new Model(Model.dt_card,0));
+        list.add(new Model(Model.DT_CARD));
+        list.add(new Model(Model.PRO_CARD));
         MultiViewTypeAdapter adapter = new MultiViewTypeAdapter(list,this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, OrientationHelper.VERTICAL, false);
 
