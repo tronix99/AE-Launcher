@@ -5,4 +5,7 @@
 
     <dimen name="main_height">1000dp</dimen>
     <dimen name="main_width">1000dp</dimen>
+
+    <dimen name="wallpaper_chooser_grid_width">196dp</dimen>
+    <dimen name="wallpaper_chooser_grid_height">140dp</dimen>
 </resources>

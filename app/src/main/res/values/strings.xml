@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Aaronix Launcher</string>
+
+    <string name="chooser_wallpaper">Choose wallpaper from</string>
+    <string name="wallpaper_instructions">Set wallpaper</string>
+
 </resources>

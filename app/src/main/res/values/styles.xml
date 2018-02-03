@@ -12,4 +12,8 @@
         <item name="android:windowBackground">@color/transparent</item>
     </style>
 
+    <style name="Theme" parent="android:Theme.Holo.Wallpaper.NoTitleBar">
+        <item name="android:windowActionModeOverlay">true</item>
+    </style>
+
 </resources>
