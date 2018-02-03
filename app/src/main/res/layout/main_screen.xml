@@ -3,12 +3,8 @@
     android:id="@+id/DrawerLayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_gravity="center">
-
-
-    <com.arx_era.layout.Main
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+    android:layout_gravity="center"
+    android:orientation="vertical">
 
 
 </LinearLayout>
