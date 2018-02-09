@@ -6,14 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:windowShowWallpaper">true</item>
         <item name="android:windowBackground">@color/transparent</item>
-    </style>
-
-    <style name="Theme" parent="android:Theme.Holo.Wallpaper.NoTitleBar">
-        <item name="android:windowActionModeOverlay">true</item>
     </style>
 
 </resources>
