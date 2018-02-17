@@ -9,7 +9,7 @@
         android:id="@+id/icon_image"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:padding="2dp"/>
+        android:padding="1dp"/>
 
     <TextView
         android:id="@+id/icon_text"

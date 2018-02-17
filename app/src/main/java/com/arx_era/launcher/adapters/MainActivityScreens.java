@@ -1,4 +1,4 @@
-package com.arx_era.launcher;
+package com.arx_era.launcher.adapters;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;

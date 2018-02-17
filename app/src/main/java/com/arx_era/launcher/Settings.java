@@ -32,6 +32,15 @@ public class Settings extends PreferenceActivity {
 
             final SharedPreferences.Editor editor = pref.edit();
 
+            EditTextPreference name = (EditTextPreference) getPreferenceManager().findPreference("name");
+            name.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    editor.putString("name", newValue.toString());
+                    editor.commit();
+                    return false;
+                }
+            });
             EditTextPreference username = (EditTextPreference) getPreferenceManager().findPreference("username");
             username.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override

@@ -24,6 +24,7 @@ import com.arx_era.launcher.Settings;
 public class HomeScreen extends Fragment{
 
     private GestureDetector mDetector;
+    TextView name,username;
 
     public HomeScreen() {
         // Required empty public constructor
@@ -45,9 +46,14 @@ public class HomeScreen extends Fragment{
                 "Pref",
                 Context.MODE_PRIVATE);
 
-        TextView username = (TextView) v.findViewById(R.id.username);
+        //name = (TextView) v.findViewById(R.id.name);
+        username = (TextView) v.findViewById(R.id.username);
+
+        //String _name = pref.getString("name", "");
         String _username = pref.getString("username", "");
-        username.setText("Hello, "+_username);
+
+        //name.setText(_name);
+        username.setText(_username);
 
         // get the gesture detector
         mDetector = new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener(){
@@ -115,12 +121,5 @@ public class HomeScreen extends Fragment{
             return mDetector.onTouchEvent(event);
         }
     };
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        this.onCreate(null);
-    }
 
 }
