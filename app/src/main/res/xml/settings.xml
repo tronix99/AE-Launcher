@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference
-        android:title="@string/name"
-        android:key="name"
-        android:summary="Please provide your Name" />
-    <EditTextPreference
-        android:title="@string/username"
-        android:key="username"
-        android:summary="Please provide your username" />
+    <PreferenceCategory android:title="@string/general_category">
+        <EditTextPreference
+            android:key="name"
+            android:summary="Please provide your Name"
+            android:title="@string/name" />
+        <EditTextPreference
+            android:key="username"
+            android:summary="Please provide your username"
+            android:title="@string/username" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/general_category">
+
+    </PreferenceCategory>
 </PreferenceScreen>

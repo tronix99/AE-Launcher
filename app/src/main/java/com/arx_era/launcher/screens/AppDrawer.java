@@ -6,22 +6,27 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.view.ViewPager;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.arx_era.launcher.Pac;
 import com.arx_era.launcher.R;
 import com.arx_era.launcher.adapters.DrawerAdapter;
-import com.arx_era.launcher.adapters.SortApps;
+import com.arx_era.launcher.classes.SortApps;
 import com.arx_era.launcher.listeners.DrawerClickListener;
 
 import java.util.List;
@@ -41,7 +46,6 @@ public class AppDrawer extends Fragment{
     Pac[] pacs;
     PackageManager pm;
     FrameLayout sbs;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,11 @@ public class AppDrawer extends Fragment{
         filter.addDataScheme("package");
         getContext().registerReceiver(new PacReceiver(), filter);
 
+
+        drawerAdapterObject = new DrawerAdapter(getActivity(), pacs);
+        drawerGrid.setAdapter(drawerAdapterObject);
+        drawerGrid.setOnItemClickListener(new DrawerClickListener(getActivity(), pacs, pm));
+        registerForContextMenu(drawerGrid);
         return v;
     }
 
@@ -85,7 +94,7 @@ public class AppDrawer extends Fragment{
             pacs[I]= new Pac();
             pacs[I].icon=pacsList.get(I).loadIcon(pm);
             pacs[I].packageName=pacsList.get(I).activityInfo.packageName;
-            pacs[I].name=pacsList.get(I).activityInfo.name.getClass().getSimpleName();
+            pacs[I].name=pacsList.get(I).activityInfo.name;
             pacs[I].label=pacsList.get(I).loadLabel(pm).toString();
         }
         new SortApps().exchange_sort(pacs);
@@ -102,4 +111,30 @@ public class AppDrawer extends Fragment{
 
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getActivity().getMenuInflater().inflate(R.menu.popup_menu , menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int index = info.position;
+        switch(item.getItemId()){
+            case R.id.dock:
+                Toast.makeText(getContext(), "Done" , Toast.LENGTH_SHORT).show();
+
+                break;
+            case R.id.uninstall:
+                String app_pkg_name = pacs[index].packageName.toString();
+                int UNINSTALL_REQUEST_CODE = 1;
+                Intent intent = new Intent(Intent.ACTION_UNINSTALL_PACKAGE);
+                intent.setData(Uri.parse("package:" + app_pkg_name));
+                intent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
+                startActivityForResult(intent, UNINSTALL_REQUEST_CODE);
+                break;
+        }
+        return true;
+    }
 }

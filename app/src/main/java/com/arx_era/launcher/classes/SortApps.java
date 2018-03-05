@@ -1,4 +1,4 @@
-package com.arx_era.launcher.adapters;
+package com.arx_era.launcher.classes;
 
 import com.arx_era.launcher.Pac;
 import com.arx_era.launcher.screens.AppDrawer;

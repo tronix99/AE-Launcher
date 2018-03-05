@@ -11,9 +11,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.TextView;
 
-import com.arx_era.launcher.MainActivity;
+import com.arx_era.launcher.Pac;
 import com.arx_era.launcher.R;
 import com.arx_era.launcher.Settings;
 
@@ -25,6 +26,7 @@ public class HomeScreen extends Fragment{
 
     private GestureDetector mDetector;
     TextView name,username;
+    Pac[] pacs;
 
     public HomeScreen() {
         // Required empty public constructor
@@ -46,13 +48,13 @@ public class HomeScreen extends Fragment{
                 "Pref",
                 Context.MODE_PRIVATE);
 
-        //name = (TextView) v.findViewById(R.id.name);
+        name = (TextView) v.findViewById(R.id.name);
         username = (TextView) v.findViewById(R.id.username);
 
-        //String _name = pref.getString("name", "");
+        String _name = pref.getString("name", "");
         String _username = pref.getString("username", "");
 
-        //name.setText(_name);
+        name.setText(_name);
         username.setText(_username);
 
         // get the gesture detector
@@ -105,6 +107,8 @@ public class HomeScreen extends Fragment{
         // The touch listener passes all its events on to the gesture detector
         v.setOnTouchListener(touchListener);
 
+        GridView dock = (GridView) v.findViewById(R.id.dock);
+
         return v;
     }
 
@@ -122,4 +126,8 @@ public class HomeScreen extends Fragment{
         }
     };
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }
