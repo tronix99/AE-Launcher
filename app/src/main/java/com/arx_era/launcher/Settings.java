@@ -41,6 +41,9 @@ public class Settings extends PreferenceActivity {
                     return false;
                 }
             });
+            name.setSummary(pref.getString("name", ""));
+            name.setText(pref.getString("name", ""));
+
             EditTextPreference username = (EditTextPreference) getPreferenceManager().findPreference("username");
             username.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
@@ -50,6 +53,7 @@ public class Settings extends PreferenceActivity {
                     return false;
                 }
             });
+            username.setSummary(pref.getString("username", ""));
         }
     }
 
