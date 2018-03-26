@@ -28,6 +28,7 @@ import com.arx_era.launcher.R;
 import com.arx_era.launcher.adapters.DrawerAdapter;
 import com.arx_era.launcher.classes.SortApps;
 import com.arx_era.launcher.listeners.DrawerClickListener;
+import com.arx_era.launcher.listeners.DrawerLongPressListener;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ import java.util.List;
  * Created by tronix99 on 9/2/18.
  */
 
-public class AppDrawer extends Fragment{
+public class AppDrawer extends Fragment {
 
     public AppDrawer() {
         // Required empty public constructor
@@ -63,12 +64,12 @@ public class AppDrawer extends Fragment{
         drawerGrid = (GridView) v.findViewById(R.id.app_drawergrid);
         set_pacs();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             sbs = (FrameLayout) v.findViewById(R.id.status_barSize);
             sbs.setVisibility(View.VISIBLE);
         } else {
             sbs.setVisibility(View.GONE);
-        }
+        }*/
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_PACKAGE_ADDED);
@@ -82,25 +83,27 @@ public class AppDrawer extends Fragment{
         drawerGrid.setAdapter(drawerAdapterObject);
         drawerGrid.setOnItemClickListener(new DrawerClickListener(getActivity(), pacs, pm));
         registerForContextMenu(drawerGrid);
+
         return v;
     }
 
-    public void set_pacs(){
-        final Intent mainIntent = new Intent(Intent.ACTION_MAIN,null);
+    public void set_pacs() {
+        final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
         List<ResolveInfo> pacsList = pm.queryIntentActivities(mainIntent, 0);
         pacs = new Pac[pacsList.size()];
-        for(int I=0;I<pacsList.size();I++){
-            pacs[I]= new Pac();
-            pacs[I].icon=pacsList.get(I).loadIcon(pm);
-            pacs[I].packageName=pacsList.get(I).activityInfo.packageName;
-            pacs[I].name=pacsList.get(I).activityInfo.name;
-            pacs[I].label=pacsList.get(I).loadLabel(pm).toString();
+        for (int I = 0; I < pacsList.size(); I++) {
+            pacs[I] = new Pac();
+            pacs[I].icon = pacsList.get(I).loadIcon(pm);
+            pacs[I].packageName = pacsList.get(I).activityInfo.packageName;
+            pacs[I].name = pacsList.get(I).activityInfo.name;
+            pacs[I].label = pacsList.get(I).loadLabel(pm).toString();
         }
         new SortApps().exchange_sort(pacs);
         drawerAdapterObject = new DrawerAdapter(getActivity(), pacs);
         drawerGrid.setAdapter(drawerAdapterObject);
         drawerGrid.setOnItemClickListener(new DrawerClickListener(getActivity(), pacs, pm));
+        //drawerGrid.setOnItemLongClickListener(new DrawerLongPressListener(getActivity(), drawerGrid));
     }
 
     public class PacReceiver extends BroadcastReceiver {
@@ -114,17 +117,16 @@ public class AppDrawer extends Fragment{
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        getActivity().getMenuInflater().inflate(R.menu.popup_menu , menu);
+        getActivity().getMenuInflater().inflate(R.menu.popup_menu, menu);
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int index = info.position;
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.dock:
-                Toast.makeText(getContext(), "Done" , Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.uninstall:
                 String app_pkg_name = pacs[index].packageName.toString();

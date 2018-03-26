@@ -4,28 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/status_barSize"
-        android:layout_width="match_parent"
-        android:layout_height="185dp" />
-
-
     <LinearLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
-        android:layout_height="185dp"
-        android:orientation="vertical">
+        android:layout_height="@dimen/fadeheight"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/statusbar"
+        android:clipToPadding="true">
 
         <TextView
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingTop="50dp"
+            android:paddingTop="18dp"
             android:shadowColor="@color/black"
             android:shadowDx="0"
             android:shadowDy="0"
-            android:shadowRadius="10"
+            android:shadowRadius="5"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 
@@ -37,24 +33,9 @@
             android:shadowColor="@color/black"
             android:shadowDx="0"
             android:shadowDy="0"
-            android:shadowRadius="10"
+            android:shadowRadius="5"
             android:textColor="@android:color/white"
             android:textSize="15sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/dock_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
-
-        <GridView
-            android:id="@+id/dock"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:numColumns="4" />
-
     </LinearLayout>
 
 </RelativeLayout>

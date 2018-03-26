@@ -59,11 +59,13 @@ public class HomeScreen extends Fragment{
 
         // get the gesture detector
         mDetector = new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener(){
+
             @Override
             public boolean onDown(MotionEvent event) {
                 Log.d("TAG","onDown: ");
                 // don't return false here or else none of the other
                 // gestures will work
+
                 return true;
             }
 
@@ -81,7 +83,6 @@ public class HomeScreen extends Fragment{
 
             @Override
             public boolean onDoubleTap(MotionEvent e) {
-                Log.i("TAG", "onDoubleTap: ");
                 Intent i = new Intent(getActivity(), Settings.class);
                 startActivity(i);
                 return true;
@@ -100,6 +101,8 @@ public class HomeScreen extends Fragment{
                 Log.d("TAG", "onFling: ");
                 return true;
             }
+
+
         });
 
 
@@ -126,8 +129,15 @@ public class HomeScreen extends Fragment{
         }
     };
 
+    protected boolean paused = false;
+    @Override
+    public void onPause() {
+        super.onPause();
+        paused = true;
+    }
     @Override
     public void onResume() {
         super.onResume();
+        paused = false;
     }
 }

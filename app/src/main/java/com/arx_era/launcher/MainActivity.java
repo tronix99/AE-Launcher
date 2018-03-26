@@ -1,13 +1,18 @@
 package com.arx_era.launcher;
 
 import android.animation.ArgbEvaluator;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.arx_era.launcher.adapters.MainActivityScreens;
 import com.arx_era.launcher.screens.AppDrawer;
@@ -18,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     MainActivityScreens adapter;
 
+    TextView name,username;
 
     Integer[] colors = null;
     ArgbEvaluator argbEvaluator = new ArgbEvaluator();
@@ -27,18 +33,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
         adapter = new MainActivityScreens(getSupportFragmentManager());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow();
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
             FrameLayout sbs = (FrameLayout) findViewById(R.id.status_barSize);
             sbs.setBackground(getResources().getDrawable(R.drawable.fade));
         }
         viewPager = (ViewPager) findViewById(R.id.viewpager);
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                /*View v = findViewById(R.id.HomeLayout);
-                if (position == 0){
+                View v = findViewById(R.id.HomeLayout);
+                /*if (position == 0){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                         v.setSystemUiVisibility(0);
                     }
@@ -48,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                         v.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
                     }
                 }*/
-                if(position < (adapter.getCount() -1) && position < (colors.length - 1)) {
+                if (position < (adapter.getCount() - 1) && position < (colors.length - 1)) {
                     viewPager.setBackgroundColor((Integer) argbEvaluator.evaluate(positionOffset, colors[position], colors[position + 1]));
                 } else {
                     // the last page color
@@ -68,11 +75,24 @@ public class MainActivity extends AppCompatActivity {
         });
         setupViewPager(viewPager);
         setUpColors();
-   }
 
-    private void setUpColors(){
+        SharedPreferences pref = getSharedPreferences(
+                "Pref",
+                Context.MODE_PRIVATE);
+
+        name = (TextView) findViewById(R.id.name);
+        username = (TextView) findViewById(R.id.username);
+
+        String _name = pref.getString("name", "");
+        String _username = pref.getString("username", "");
+
+        name.setText(_name);
+        username.setText(_username);
+    }
+
+    private void setUpColors() {
         Integer color1 = getResources().getColor(R.color.transparent);
-        Integer color2 = getResources().getColor(R.color.halftransparent);
+        Integer color2 = getResources().getColor(R.color.dtransparent);
 
         Integer[] colors_temp = {color1, color2};
         colors = colors_temp;

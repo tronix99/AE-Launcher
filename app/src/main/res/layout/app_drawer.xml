@@ -3,14 +3,12 @@
     android:id="@+id/app_drawer"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
-    <FrameLayout
-        android:id="@+id/status_barSize"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"/>
 
     <GridView
+        style="@style/scrollbar_style"
         android:id="@+id/app_drawergrid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,9 +16,10 @@
         android:numColumns="4"
         android:stretchMode="columnWidth"
         android:gravity="center"
-
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:layout_marginBottom="-8dp"/>
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="@dimen/statusbar"
+        android:clipToPadding="false"
+        android:layout_marginBottom="-1dp"/>
 
 </LinearLayout>

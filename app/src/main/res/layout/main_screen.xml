@@ -1,19 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.arx_era.launcher.uppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aepanelup="http://schemas.android.com/tools"
     android:id="@+id/HomeLayout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_gravity="center"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    aepanelup:aePanelHeight="80dp"
+    aepanelup:aeShadowHeight="4dp">
 
-    <FrameLayout
-        android:id="@+id/status_barSize"
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/status_barSize"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/frame"
         android:layout_width="match_parent"
-        android:layout_height="85dp"/>
+        android:layout_height="200dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:clipToPadding="true"
+        android:paddingTop="5dp">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
+    <TextView
+        android:id="@+id/name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:shadowColor="@color/black"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:shadowColor="@color/black"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:textColor="@android:color/white"
+        android:textSize="15sp" />
+    </LinearLayout>
+
+</com.arx_era.launcher.uppanel.SlidingUpPanelLayout>

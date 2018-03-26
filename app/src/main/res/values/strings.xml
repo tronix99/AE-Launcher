@@ -3,4 +3,5 @@
     <string name="name">Name</string>
     <string name="username">Username</string>
     <string name="general_category">General</string>
+    <string name="uninstall">uninstall</string>
 </resources>

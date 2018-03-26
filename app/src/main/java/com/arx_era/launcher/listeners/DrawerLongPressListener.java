@@ -2,7 +2,10 @@ package com.arx_era.launcher.listeners;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.PopupMenu;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -31,7 +34,7 @@ public class DrawerLongPressListener implements OnItemLongClickListener {
     @Override
     public boolean onItemLongClick(AdapterView<?> arg0, View item, int arg2,
                                    long arg3) {
-        return false;
+        return true;
     }
 
 }

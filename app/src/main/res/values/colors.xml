@@ -6,8 +6,10 @@
 
     <color name="transparent">#00000000</color>
     <color name="halftransparent">#65000000</color>
-    <color name="dtransparent">#96000000</color>
-    <color name="whalftransparent">#50ffffff</color>
+    <color name="dtransparent">#AF000000</color>
+    <color name="whalftransparent">#EFffffff</color>
+
     <color name="white">#FFffffff</color>
     <color name="black">#000000</color>
+    <color name="dimgrey">#696969</color>
 </resources>

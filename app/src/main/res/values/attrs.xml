@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <declare-styleable name="SlidingUpPanelLayout">
+        <attr name="aePanelHeight" format="dimension" />
+        <attr name="aeShadowHeight" format="dimension" />
+        <attr name="aeParallaxOffset" format="dimension" />
+        <attr name="aeFadeColor" format="color" />
+        <attr name="aeFlingVelocity" format="integer" />
+        <attr name="aeDragView" format="reference" />
+        <attr name="aeScrollableView" format="reference" />
+        <attr name="aeOverlay" format="boolean"/>
+        <attr name="aeClipPanel" format="boolean"/>
+        <attr name="aeAnchorPoint" format="float" />
+        <attr name="aeInitialState" format="enum">
+            <enum name="expanded" value="0" />
+            <enum name="collapsed" value="1" />
+            <enum name="anchored" value="2" />
+            <enum name="hidden" value="3" />
+        </attr>
+        <attr name="aeScrollInterpolator" format="reference" />
+    </declare-styleable>
+
 </resources>

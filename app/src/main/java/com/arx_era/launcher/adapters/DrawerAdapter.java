@@ -59,7 +59,6 @@ public class DrawerAdapter extends BaseAdapter{
             viewHolder = new ViewHolder();
             viewHolder.text= (TextView)convertView.findViewById(R.id.icon_text);
             viewHolder.icon= (ImageView)convertView.findViewById(R.id.icon_image);
-
             convertView.setTag(viewHolder);
         }
         else
@@ -67,8 +66,6 @@ public class DrawerAdapter extends BaseAdapter{
 
         viewHolder.text.setText(pacsForAdapter[pos].label);
         viewHolder.icon.setImageDrawable(pacsForAdapter[pos].icon);
-
         return convertView;
     }
-
 }

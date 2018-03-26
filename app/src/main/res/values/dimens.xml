@@ -8,4 +8,7 @@
 
     <dimen name="wallpaper_chooser_grid_width">196dp</dimen>
     <dimen name="wallpaper_chooser_grid_height">140dp</dimen>
+
+    <dimen name="statusbar">25dp</dimen>
+    <dimen name="fadeheight">185dp</dimen>
 </resources>

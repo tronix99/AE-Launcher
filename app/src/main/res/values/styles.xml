@@ -9,13 +9,14 @@
         <item name="android:windowShowWallpaper">true</item>
         <item name="android:windowBackground">@color/transparent</item>
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
     </style>
 
     <style name="scrollbar_style">
         <item name="android:scrollbarAlwaysDrawHorizontalTrack">true</item>
-        <item name="android:scrollbarStyle">outsideOverlay</item>
         <item name="android:scrollbars">vertical</item>
-        <item name="android:fadeScrollbars">false</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:fadeScrollbars">true</item>
         <item name="android:scrollbarThumbVertical">@drawable/scrollbar_vertical_thumb</item>
         <item name="android:scrollbarTrackVertical">@drawable/scrollbar_vertical_track</item>
         <item name="android:scrollbarSize">6dip</item>
