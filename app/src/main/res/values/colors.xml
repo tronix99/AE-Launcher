@@ -6,7 +6,7 @@
 
     <color name="transparent">#00000000</color>
     <color name="halftransparent">#65000000</color>
-    <color name="dtransparent">#AF000000</color>
+    <color name="dtransparent">#85000000</color>
     <color name="whalftransparent">#EFffffff</color>
 
     <color name="white">#FFffffff</color>

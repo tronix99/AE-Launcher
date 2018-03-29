@@ -13,15 +13,18 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.arx_era.launcher.adapters.MainActivityScreens;
 import com.arx_era.launcher.screens.AppDrawer;
 import com.arx_era.launcher.screens.HomeScreen;
+import com.arx_era.launcher.uppanel.SlidingUpPanelLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     MainActivityScreens adapter;
+    SlidingUpPanelLayout slidingUpPanelLayout;
 
     TextView name,username;
 
@@ -81,13 +84,8 @@ public class MainActivity extends AppCompatActivity {
                 Context.MODE_PRIVATE);
 
         name = (TextView) findViewById(R.id.name);
-        username = (TextView) findViewById(R.id.username);
-
         String _name = pref.getString("name", "");
-        String _username = pref.getString("username", "");
-
         name.setText(_name);
-        username.setText(_username);
     }
 
     private void setUpColors() {

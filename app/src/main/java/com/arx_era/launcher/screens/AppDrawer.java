@@ -93,11 +93,11 @@ public class AppDrawer extends Fragment {
         List<ResolveInfo> pacsList = pm.queryIntentActivities(mainIntent, 0);
         pacs = new Pac[pacsList.size()];
         for (int I = 0; I < pacsList.size(); I++) {
-            pacs[I] = new Pac();
-            pacs[I].icon = pacsList.get(I).loadIcon(pm);
-            pacs[I].packageName = pacsList.get(I).activityInfo.packageName;
-            pacs[I].name = pacsList.get(I).activityInfo.name;
-            pacs[I].label = pacsList.get(I).loadLabel(pm).toString();
+                pacs[I] = new Pac();
+                pacs[I].icon = pacsList.get(I).loadIcon(pm);
+                pacs[I].packageName = pacsList.get(I).activityInfo.packageName;
+                pacs[I].name = pacsList.get(I).activityInfo.name;
+                pacs[I].label = pacsList.get(I).loadLabel(pm).toString();
         }
         new SortApps().exchange_sort(pacs);
         drawerAdapterObject = new DrawerAdapter(getActivity(), pacs);
